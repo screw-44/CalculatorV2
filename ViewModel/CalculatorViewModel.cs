@@ -17,24 +17,19 @@ namespace CalculatorV2.ViewModel
 
         public CalculatorViewModel()
         {
-            calculatorData.num1 = 0;
-            calculatorData.num2 = 0;
-            calculatorData.result = 0;
-            calculateLine = "test";
+            calculatorData.processLine = "test";
+            calculatorData.historyLine = "history test";
         }
 
-
-        string textLine;
-        public string TextLine
+        public string HistoryLine
         {
-            set { textLine = value; this.RaisePropertyChanged("textLine");  }
-            get { return textLine; }
+            set { calculatorData.historyLine = value; this.RaisePropertyChanged("historyLine"); }
+            get { return calculatorData.historyLine; }
         }
-        string calculateLine;
-        public string CalculateLine
+        public string ProcessLine
         {
-            set { calculateLine = value; this.RaisePropertyChanged("calculateLine"); }
-            get { return calculateLine; }
+            set { calculatorData.processLine = value; this.RaisePropertyChanged("processLine"); }
+            get { return calculatorData.processLine; }
         }
 
         private BaseCommand clickEnter;
@@ -46,10 +41,11 @@ namespace CalculatorV2.ViewModel
                 {
                     clickEnter = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine = "teststestt";
-                        textLine += calculateLine;
-                        textLine += "\n";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.DoCalculate();
+                        calculatorData.historyLine += ("\n" + calculatorData.processLine + '=' + calculatorData.result);
+                        calculatorData.processLine = "";
+                        this.RaisePropertyChanged("processLine");
+                        this.RaisePropertyChanged("historyLine");
                     }));
                 }
                 return clickEnter;
@@ -64,8 +60,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickClear = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine = "";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine = "";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickClear;
@@ -81,10 +77,10 @@ namespace CalculatorV2.ViewModel
                     clickDelete = new BaseCommand(new Action<object>(o =>
                     {
                         // when empty, don't remove
-                        if (calculateLine == "")
+                        if (calculatorData.processLine == "")
                             return;
-                        calculateLine = calculateLine.Remove(CalculateLine.Length-1);
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine = calculatorData.processLine.Remove(calculatorData.processLine.Length-1);
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDelete;
@@ -100,8 +96,8 @@ namespace CalculatorV2.ViewModel
                 { 
                     clickMul = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "*";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "*";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickMul;
@@ -116,8 +112,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickSub = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "-";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "-";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickSub;
@@ -132,8 +128,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickAdd = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "*";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "+";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickAdd;
@@ -148,8 +144,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDiv = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "/";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "/";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDiv;
@@ -166,10 +162,10 @@ namespace CalculatorV2.ViewModel
                     clickDot = new BaseCommand(new Action<object>(o =>
                     {
                         // add dot only when there are something
-                        if (calculateLine == "")
+                        if (calculatorData.processLine == "")
                             return;
-                        calculateLine += ".";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += ".";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDot;
@@ -186,10 +182,10 @@ namespace CalculatorV2.ViewModel
                     clickDataButton0 = new BaseCommand(new Action<object>(o =>
                     {
                         // 0 is only add to string when begin with real num.
-                        if (calculateLine == "")
+                        if (calculatorData.processLine == "")
                             return;
-                        calculateLine += "0";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "0";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton0;
@@ -204,8 +200,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton1 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "1";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "1";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton1;
@@ -220,8 +216,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton2 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "2";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "2";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton2;
@@ -236,8 +232,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton3 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "3";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "3";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton3;
@@ -252,8 +248,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton4 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "4";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "4";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton4;
@@ -268,8 +264,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton5 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "5";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "5";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton5;
@@ -284,8 +280,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton6 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "6";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "6";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton6;
@@ -301,8 +297,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton7 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "7";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "7";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton7;
@@ -320,8 +316,8 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton8 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "8";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "8";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton8;
@@ -336,56 +332,13 @@ namespace CalculatorV2.ViewModel
                 {
                     clickDataButton9 = new BaseCommand(new Action<object>(o =>
                     {
-                        calculateLine += "9";
-                        this.RaisePropertyChanged("calculateLine");
+                        calculatorData.processLine += "9";
+                        this.RaisePropertyChanged("processLine");
                     }));
                 }
                 return clickDataButton9;
             }
         }
-
-    
-    
-
-
-        public double Num1
-        {
-            get
-            {
-                return calculatorData.num1;
-            }
-            set
-            {
-                calculatorData.num1 = value;
-                this.RaisePropertyChanged("num1");
-            }
-        }
-        public double Num2
-        {
-            get
-            {
-                return calculatorData.num2;
-            }
-            set
-            {
-                calculatorData.num2 = value;
-                this.RaisePropertyChanged("num2");
-            }
-        }
-
-        public double Result
-        {
-            get
-            {
-                return calculatorData.result;
-            }
-            set
-            {
-                calculatorData.result = value;
-                this.RaisePropertyChanged("result");
-            }
-        }
-
 
     }
 }
