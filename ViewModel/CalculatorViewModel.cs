@@ -20,16 +20,17 @@ namespace CalculatorV2.ViewModel
             calculatorData.num1 = 0;
             calculatorData.num2 = 0;
             calculatorData.result = 0;
+            calculateLine = "test";
         }
 
 
-        string textLine = "";
+        string textLine;
         public string TextLine
         {
             set { textLine = value; this.RaisePropertyChanged("textLine");  }
             get { return textLine; }
         }
-        string calculateLine = "";
+        string calculateLine;
         public string CalculateLine
         {
             set { calculateLine = value; this.RaisePropertyChanged("calculateLine"); }
@@ -45,8 +46,10 @@ namespace CalculatorV2.ViewModel
                 {
                     clickEnter = new BaseCommand(new Action<object>(o =>
                     {
+                        calculateLine = "teststestt";
                         textLine += calculateLine;
                         textLine += "\n";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickEnter;
@@ -62,6 +65,7 @@ namespace CalculatorV2.ViewModel
                     clickClear = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine = "";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickClear;
@@ -79,10 +83,96 @@ namespace CalculatorV2.ViewModel
                         // when empty, don't remove
                         if (calculateLine == "")
                             return;
-                        calculateLine = calculateLine.Remove(0, calculateLine.Length - 1);
+                        calculateLine = calculateLine.Remove(CalculateLine.Length-1);
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDelete;
+            }
+        }
+
+        private BaseCommand clickMul;
+        public BaseCommand ClickMul
+        {
+            get
+            {
+                if (clickMul == null)
+                { 
+                    clickMul = new BaseCommand(new Action<object>(o =>
+                    {
+                        calculateLine += "*";
+                        this.RaisePropertyChanged("calculateLine");
+                    }));
+                }
+                return clickMul;
+            }
+        }
+        private BaseCommand clickSub;
+        public BaseCommand ClickSub
+        {
+            get
+            {
+                if (clickSub == null)
+                {
+                    clickSub = new BaseCommand(new Action<object>(o =>
+                    {
+                        calculateLine += "-";
+                        this.RaisePropertyChanged("calculateLine");
+                    }));
+                }
+                return clickSub;
+            }
+        }
+        private BaseCommand clickAdd;
+        public BaseCommand ClickAdd
+        {
+            get
+            {
+                if (clickAdd == null)
+                {
+                    clickAdd = new BaseCommand(new Action<object>(o =>
+                    {
+                        calculateLine += "*";
+                        this.RaisePropertyChanged("calculateLine");
+                    }));
+                }
+                return clickAdd;
+            }
+        }
+        private BaseCommand clickDiv;
+        public BaseCommand ClickDiv
+        {
+            get
+            {
+                if (clickDiv == null)
+                {
+                    clickDiv = new BaseCommand(new Action<object>(o =>
+                    {
+                        calculateLine += "/";
+                        this.RaisePropertyChanged("calculateLine");
+                    }));
+                }
+                return clickDiv;
+            }
+        }
+
+        private BaseCommand clickDot;
+        public BaseCommand ClickDot
+        {
+            get
+            {
+                if (clickDot == null)
+                {
+                    clickDot = new BaseCommand(new Action<object>(o =>
+                    {
+                        // add dot only when there are something
+                        if (calculateLine == "")
+                            return;
+                        calculateLine += ".";
+                        this.RaisePropertyChanged("calculateLine");
+                    }));
+                }
+                return clickDot;
             }
         }
 
@@ -99,6 +189,7 @@ namespace CalculatorV2.ViewModel
                         if (calculateLine == "")
                             return;
                         calculateLine += "0";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton0;
@@ -114,6 +205,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton1 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "1";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton1;
@@ -129,6 +221,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton2 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "2";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton2;
@@ -144,6 +237,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton3 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "3";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton3;
@@ -159,6 +253,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton4 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "4";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton4;
@@ -174,6 +269,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton5 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "5";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton5;
@@ -189,6 +285,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton6 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "6";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton6;
@@ -205,6 +302,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton7 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "7";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton7;
@@ -223,6 +321,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton8 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "8";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton8;
@@ -238,6 +337,7 @@ namespace CalculatorV2.ViewModel
                     clickDataButton9 = new BaseCommand(new Action<object>(o =>
                     {
                         calculateLine += "9";
+                        this.RaisePropertyChanged("calculateLine");
                     }));
                 }
                 return clickDataButton9;

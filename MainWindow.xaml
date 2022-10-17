@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <TextBox Name ="inputContent" Grid.ColumnSpan="4" Text="{Binding TextLine}"/>
+        <TextBox Name ="inputContent" Grid.ColumnSpan="4" Text="{Binding CalculateLine}"/>
 
 
         <Button Name="btn2" Command="{Binding ClickClear}" Grid.Row="1" Grid.Column="0" Background="Gold" ClickMode="Press">Clear</Button>
@@ -35,21 +35,21 @@
         <Button Name="btnN7" Command="{Binding ClickDataButton7}" Grid.Row="2" Grid.Column="0" Background="AliceBlue" ClickMode="Press">7</Button>
         <Button Name="btnN8" Command="{Binding ClickDataButton8}" Grid.Row="2" Grid.Column="1" Background="AliceBlue" ClickMode="Press">8</Button>
         <Button Name="btnN9" Command="{Binding ClickDataButton9}" Grid.Row="2" Grid.Column="2" Background="AliceBlue" ClickMode="Press">9</Button>
-        <Button Name="btnDivide" Grid.Row="2" Grid.Column="3" Background="Cyan" ClickMode="Press">%</Button>
+        <Button Name="btnDivide" Command="{Binding ClickDiv}" Grid.Row="2" Grid.Column="3" Background="Cyan" ClickMode="Press">%</Button>
 
         <Button Name="btnN4" Command="{Binding ClickDataButton4}" Grid.Row="3" Grid.Column="0"  Background="AliceBlue" ClickMode="Press">4</Button>
         <Button Name="btnN5" Command="{Binding ClickDataButton5}" Grid.Row="3" Grid.Column="1"  Background="AliceBlue" ClickMode="Press">5</Button>
         <Button Name="btnN6" Command="{Binding ClickDataButton6}" Grid.Row="3" Grid.Column="2"  Background="AliceBlue" ClickMode="Press">6</Button>
-        <Button Name="btnMul" Grid.Row="3" Grid.Column="3"  Background="Cyan" ClickMode="Press">*</Button>
+        <Button Name="btnMul" Grid.Row="3" Grid.Column="3" Command="{Binding ClickAdd}" Background="Cyan" ClickMode="Press">*</Button>
 
         <Button Name="btnN1" Command="{Binding ClickDataButton1}" Grid.Row="4" Grid.Column="0"  Background="AliceBlue" ClickMode="Press">1</Button>
         <Button Name="btnN2" Command="{Binding ClickDataButton2}" Grid.Row="4" Grid.Column="1"  Background="AliceBlue" ClickMode="Press">2</Button>
         <Button Name="btnN3" Command="{Binding ClickDataButton3}" Grid.Row="4" Grid.Column="2"  Background="AliceBlue" ClickMode="Press">3</Button>
-        <Button Name="btnSub" Grid.Row="4" Grid.Column="3"  Background="Cyan" ClickMode="Press">-</Button>
+        <Button Name="btnSub" Grid.Row="4" Grid.Column="3" Command="{Binding ClickSub}" Background="Cyan" ClickMode="Press">-</Button>
 
         <Button Name="btnN0" Command="{Binding ClickDataButton0}" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Background="AliceBlue" ClickMode="Press">0</Button>
-        <Button Name="btnDot" Grid.Row="5" Grid.Column="2"  Background="AliceBlue" ClickMode="Press">.</Button>
-        <Button Name="btnAdd" Grid.Row="5" Grid.Column="3"  Background="Cyan" ClickMode="Press">+</Button>
+        <Button Name="btnDot" Grid.Row="5" Grid.Column="2" Command="{Binding ClickDot}" Background="AliceBlue" ClickMode="Press">.</Button>
+        <Button Name="btnAdd" Grid.Row="5" Grid.Column="3" Command="{Binding ClickAdd}" Background="Cyan" ClickMode="Press">+</Button>
 
     </Grid>
 </Window>
