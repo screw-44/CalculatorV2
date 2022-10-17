@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CalculatorV2
+namespace CalculatorV2.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Window1.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Window1 : Window
     {
-        //View.Page1 page1 = new View.Page1();
-        //View.Window1 window1 = new View.Window1();
-        //ViewModel.CalculatorViewModel calculatorViewModel = new ViewModel.CalculatorViewModel();
-        public MainWindow()
+        public Window1()
         {
             InitializeComponent();
-
-            this.DataContext = new ViewModel.CalculatorViewModel();
         }
     }
 }
